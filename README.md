@@ -16,7 +16,7 @@ ControllerLinkBuilder.linkTo(methodOn(MyClass.class).myMethod())withRel(“name-
 
 Above, ControllerLinkBuilder uses the MyClass.class base path as the foundation of the Link object we are creating. The `methodOn(...)` takes some class and allows us to make calls to the methods defined inside the class passed as parameter of `methodOn(...)`. In the example, the call the class called `myMethod()`.
 
-##Creating Resource Assemblers
+## Creating Resource Assemblers
 
 We create those new EntityResource because of the creation of the links among the objects that are going to be returned from the API.
 
@@ -26,7 +26,7 @@ EntityResource extends ResourceSupport {
 }
 ```
 
-##Converting Normal Entities to XEntitiesResource
+## Converting Normal Entities to XEntitiesResource
 To aid in converting Entity to EntityResource is necessary to create a resource assembler.
 
 ```
@@ -42,7 +42,7 @@ The default constructor of EntityResourceAssembler informs its superclass that i
 *	`instantiateResource()` instantiate an EntityResource given an Entity. Is optional override this method when the EntityResource that we want to great has a default constructor.
 *	Mandatory when extends `ResourceAssemblerSupport`. What this method does is create an EntityResource from an Entity and gives it a self-link. Under the cover, this method will call `instantiateResource()`  to create the EntityReosurce.
 
-##Naming Embedded Relationships
+## Naming Embedded Relationships
 With the `@Relation` annotation, we can specify how spring Hateos should name the field in the resulting JSON.
 
 ```
