@@ -1,11 +1,11 @@
 package com.spring.hateoas.learn.domain.resource
 
 import com.spring.hateoas.learn.domain.Dog
-import com.spring.hateoas.learn.domain.PersonOwner
-import com.spring.hateoas.learn.domain.resource.assembler.DogResourceAssembler
 import com.spring.hateoas.learn.domain.resource.assembler.PersonOwnerResourceAssembler
 import org.springframework.hateoas.ResourceSupport
+import org.springframework.hateoas.core.Relation
 
+@Relation(value = "Dog", collectionRelation = "Dogs")
 class DogResource(
         val name: String,
         val owner: PersonOwnerResource
