@@ -44,6 +44,20 @@ class DogController {
         listOfResourcesDogs.add(
                 linkTo(methodOn(DogController::class.java).getAllDogs()).withRel("all-dogs")
         )
-        return ResponseEntity(listOfResourcesDogs,HttpStatus.OK)
+        return ResponseEntity(listOfResourcesDogs, HttpStatus.OK)
+    }
+
+    @GetMapping(path = ["/find/{id}"])
+    fun findPerson(@PathVariable(name = "id", required = true) idDog: Long): ResponseEntity<Resource<DogResource>> {
+        val result = dogRepository.listOfDogs.filter { dog -> dog.id.equals(idDog) }
+
+        result.getOrNull(0)?.let {
+
+            var dogResource = DogResourceAssembler().toResource(it)
+            val resourceToReturn = Resource(dogResource)
+            return ResponseEntity(resourceToReturn, HttpStatus.OK)
+        }
+        return ResponseEntity(HttpStatus.NOT_FOUND)
+
     }
 }
